@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L'AUBE (ローブ) | 始まりの光</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="L'AUBE（ローブ）は、あなたの寝室を五星級の空間へ変えるライフスタイルブランドです。螺旋ハンガー、高級フレグランス、今治タオルで、毎朝ホテルで目覚めるような体験を。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="L'AUBE | 始まりの光" />
+    <meta property="og:description" content="毎朝、ホテルで目覚めるような体験を。自宅を五星級ホテルに変えるライフスタイルブランド。" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: '#FAFAF8', // Warm off-white
+              text: '#2D2D2D',       // Charcoal gray
+              accent: '#A4907C',     // Champagne Gold
+              'accent-dark': '#8a7865',
+              secondary: '#8C9BB3',  // Dawn Blue
+            },
+            fontFamily: {
+              serif: ['"Noto Serif JP"', 'serif'],
+              sans: ['"Noto Sans JP"', 'sans-serif'],
+            },
+            animation: {
+              'spin-slow': 'spin 12s linear infinite',
+              'bounce-slow': 'bounce 3s infinite',
+            }
+          },
+        },
+      }
+    </script>
+
+    <!-- Alpine.js & Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #FAFAF8; }
+      ::-webkit-scrollbar-thumb { background: #D1D1D1; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #A4907C; }
+      
+      /* Base styles */
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      [x-cloak] { display: none !important; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.560.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-background text-text font-sans overflow-x-hidden selection:bg-accent/30 selection:text-text">
+
+    <!-- Navigation -->
+    <nav 
+      x-data="{ isScrolled: false }" 
+      @scroll.window="isScrolled = (window.pageYOffset > 50)"
+      :class="isScrolled ? 'bg-white/90 backdrop-blur-md py-4 shadow-sm border-b border-white/20' : 'bg-transparent py-6'"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
+    >
+      <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+        <a href="#" class="font-serif text-2xl tracking-[0.2em] text-text font-medium z-50 relative group">
+          L'AUBE
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-10">
+          <a href="#brand-story" class="text-xs tracking-widest text-text/80 hover:text-accent transition-colors uppercase font-medium">Concept</a>
+          <a href="#problem" class="text-xs tracking-widest text-text/80 hover:text-accent transition-colors uppercase font-medium">Insight</a>
+          <a href="#solution-a" class="text-xs tracking-widest text-text/80 hover:text-accent transition-colors uppercase font-medium">The Hanger</a>
+          <a href="#solution-b" class="text-xs tracking-widest text-text/80 hover:text-accent transition-colors uppercase font-medium">The Scent</a>
+          <a href="#solution-c" class="text-xs tracking-widest text-text/80 hover:text-accent transition-colors uppercase font-medium">The Towel</a>
+          <a href="#offer" class="inline-flex items-center justify-center px-8 py-2.5 text-xs tracking-widest uppercase transition-all duration-300 font-medium font-sans bg-accent text-white hover:bg-accent-dark shadow-lg shadow-accent/20 hover:shadow-xl hover:-translate-y-1">
+            お申し込み
+          </a>
+        </div>
+
+        <!-- Mobile CTA -->
+        <div class="md:hidden">
+          <a href="#offer" class="inline-flex items-center justify-center px-4 py-2 text-xs tracking-widest uppercase bg-accent text-white font-medium">
+            購入
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=2000" 
+          alt="Sunlight on white hotel sheets" 
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-white/20 backdrop-blur-[1px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
+      </div>
+
+      <div class="relative z-10 container mx-auto px-6 text-center"
+           x-data="{ show: false }"
+           x-init="setTimeout(() => show = true, 200)">
+        
+        <p class="text-secondary font-sans font-medium tracking-[0.3em] mb-6 uppercase text-xs md:text-sm transform transition-all duration-1000"
+           :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+          L'AUBE Collection
+        </p>
+        
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif text-text leading-tight mb-10 transform transition-all duration-1000 delay-300"
+            :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+          毎朝、ホテルで<br class="md:hidden" />目覚めるような<br />体験を。
+        </h1>
+
+        <div class="transform transition-all duration-1000 delay-700"
+             :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+          <a href="#brand-story" class="inline-block border-b border-text/60 pb-1 text-text/80 text-xs tracking-[0.2em] hover:text-accent hover:border-accent transition-colors duration-500 cursor-pointer">
+            DISCOVER THE SUITE
+          </a>
+        </div>
+      </div>
+
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-text/30">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Brand Story (Concept) -->
+    <section id="brand-story" class="relative py-32 md:py-48 overflow-hidden bg-background">
+      <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+          
+          <!-- Image Side with Parallax -->
+          <div class="w-full md:w-1/2 h-[500px] md:h-[600px] relative overflow-hidden rounded-sm shadow-xl"
+               x-data="{ scroll: 0 }"
+               @scroll.window="scroll = window.pageYOffset">
+             <div class="absolute inset-0 h-[120%] -top-[10%]"
+                  :style="`transform: translateY(${(scroll * 0.05) - 50}px)`">
+                <img 
+                  src="https://images.unsplash.com/photo-1562133567-b6a0a9c7e6eb?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Dawn view from hotel window" 
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-secondary/10 mix-blend-overlay"></div>
+             </div>
+          </div>
+
+          <!-- Text Side -->
+          <div class="w-full md:w-1/2" 
+               x-data="{ shown: false }" 
+               x-intersect.threshold.0.3="shown = true">
+            <div class="transition-all duration-1000 transform" 
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+              <span class="text-secondary text-xs font-bold tracking-[0.2em] uppercase block mb-6">Concept</span>
+              <h2 class="text-4xl md:text-5xl font-serif text-text mb-8 leading-snug">
+                L'AUBE<br />
+                <span class="text-2xl md:text-3xl text-text/60 mt-2 block">— 始まりの光</span>
+              </h2>
+              
+              <div class="space-y-6 font-sans font-light text-text/70 leading-8 text-sm md:text-base">
+                <p>
+                  「L'AUBE（ローブ）」は、フランス語で『黎明』を意味します。
+                </p>
+                <p>
+                  それは、夜の帳（とばり）が下りて、今日という一日が静かに始まる瞬間。
+                  昨日の疲れも、家事の喧騒も、すべてをリセットして、
+                  新しい希望と共に目覚めるための時間。
+                </p>
+                <p>
+                  私たちが提案するのは、単なる生活用品ではありません。
+                  それは、あなたの寝室を聖域に変え、
+                  生活に「光」を差し込むための道具です。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Decorative BG Text -->
+      <div class="absolute top-1/2 left-0 w-full text-center pointer-events-none opacity-[0.03] select-none transform -translate-y-1/2 overflow-hidden">
+        <span class="text-[12rem] md:text-[20rem] font-serif whitespace-nowrap">L'AUBE</span>
+      </div>
+    </section>
+
+    <!-- Insight (Problem) -->
+    <section id="problem" class="py-24 md:py-32 bg-[#F4F4F5] relative">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="text-center mb-20 max-w-2xl mx-auto"
+             x-data="{ shown: false }" 
+             x-intersect.threshold.0.5="shown = true">
+          <div class="transition-all duration-1000 transform" 
+               :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+            <h2 class="text-3xl md:text-4xl font-serif mb-6 text-text">
+              私たちは毎晩、<br />コップ一杯の汗をかいている。
+            </h2>
+            <p class="text-text/60 leading-relaxed font-sans font-light">
+              本来なら、肌に触れるシーツやカバーは毎日洗いたい。<br />
+              しかし「干す場所がない」「乾かない」という現実が、<br />
+              私たちの睡眠環境から「清潔さ」を奪っています。
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Item 1 -->
+          <div class="h-full" x-data="{ shown: false }" x-intersect.threshold.0.2="shown = true">
+            <div class="flex flex-col items-center text-center p-10 bg-white rounded-sm shadow-sm border border-gray-100 h-full transition-all duration-1000 transform delay-0"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+              <div class="text-secondary mb-6 opacity-80">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+              </div>
+              <h3 class="font-serif text-lg mb-4 text-text">行き場のない湿気</h3>
+              <p class="text-sm text-text/60 leading-7 font-light">室内に密集して干された洗濯物は、空気の通り道を失い、雑菌の温床となります。</p>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="h-full" x-data="{ shown: false }" x-intersect.threshold.0.2="shown = true">
+             <div class="flex flex-col items-center text-center p-10 bg-white rounded-sm shadow-sm border border-gray-100 h-full transition-all duration-1000 transform delay-200"
+                  :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+              <div class="text-secondary mb-6 opacity-80">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              </div>
+              <h3 class="font-serif text-lg mb-4 text-text">生活感のノイズ</h3>
+              <p class="text-sm text-text/60 leading-7 font-light">カーテンレールに掛けられた洗濯物。その視覚的なノイズは、無意識にストレスを蓄積させます。</p>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="h-full" x-data="{ shown: false }" x-intersect.threshold.0.2="shown = true">
+             <div class="flex flex-col items-center text-center p-10 bg-white rounded-sm shadow-sm border border-gray-100 h-full transition-all duration-1000 transform delay-400"
+                  :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+              <div class="text-secondary mb-6 opacity-80">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+              </div>
+              <h3 class="font-serif text-lg mb-4 text-text">失われる肌触り</h3>
+              <p class="text-sm text-text/60 leading-7 font-light">長時間濡れたままの繊維は硬化し、本来の柔らかさを失ってしまいます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution A: Hanger -->
+    <section id="solution-a" class="py-24 md:py-32 bg-white overflow-hidden">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          
+          <div class="w-full lg:w-1/2 order-2 lg:order-1" 
+               x-data="{ shown: false }" 
+               x-intersect.threshold.0.3="shown = true">
+            <div class="relative group transition-all duration-1000 transform"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+              <div class="overflow-hidden rounded-sm shadow-2xl relative z-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Spiral Hanger Art" 
+                  class="w-full h-[500px] object-cover transition-transform duration-1000 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Abstract Spiral Overlay -->
+              <svg class="absolute -top-12 -left-12 w-48 h-48 text-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin-slow pointer-events-none" viewBox="0 0 100 100">
+                <path fill="currentColor" d="M50,50m-40,0a40,40 0 1,0 80,0a40,40 0 1,0 -80,0" fill-opacity="0" stroke="currentColor" stroke-width="1" />
+              </svg>
+              
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
+                <button class="bg-white/95 px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-accent hover:text-white transition-colors duration-300 shadow-xl whitespace-nowrap">
+                  View Detail
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/2 order-1 lg:order-2" 
+               x-data="{ shown: false }" 
+               x-intersect.threshold.0.3="shown = true">
+            <div class="transition-all duration-1000 delay-200 transform"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+              <span class="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-4">Solution A: Function</span>
+              <h2 class="text-4xl md:text-5xl font-serif text-text mb-8">螺旋の美学。<br />風の通り道を作る。</h2>
+              
+              <div class="space-y-8 font-sans font-light text-text/80 leading-relaxed">
+                <p>
+                  ただのハンガーではありません。
+                  計算された螺旋（スパイラル）形状は、物理学に基づいた<span class="border-b border-accent pb-0.5">「空気の通り道」</span>を確保。
+                  重なりがちなシーツやバスタオルの間に隙間を生み出し、乾燥時間を劇的に短縮します。
+                </p>
+                <p>
+                  生活感を排除したミニマルなデザインは、使わない時もオブジェのように美しく佇みます。
+                  わずか45cm四方のスペースで、大判リネンを優雅に乾燥させます。
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                  <div class="border-l border-accent/30 pl-4">
+                    <h4 class="font-serif text-lg mb-2">360° 通気</h4>
+                    <p class="text-xs text-text/60">全方位から風を通し、生乾き臭をゼロへ。</p>
+                  </div>
+                  <div class="border-l border-accent/30 pl-4">
+                    <h4 class="font-serif text-lg mb-2">省スペース</h4>
+                    <p class="text-xs text-text/60">従来比 1/3 のスペースで設置可能。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution B: Scent -->
+    <section id="solution-b" class="py-24 md:py-32 bg-background">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="text-center mb-20 max-w-2xl mx-auto" 
+             x-data="{ shown: false }" 
+             x-intersect.threshold.0.5="shown = true">
+          <div class="transition-all duration-1000 transform"
+               :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+            <span class="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-4">Solution B: Scent</span>
+            <h2 class="text-3xl md:text-4xl font-serif mb-6 text-text">脳が記憶する、<br/>ホテルの香り。</h2>
+            <p class="text-text/70 leading-relaxed font-sans font-light">
+              五感の中で唯一、脳の記憶中枢（大脳辺縁系）に直接届くのが「嗅覚」です。<br />
+              L'AUBEのフレグランスミストをひと吹きすれば、<br />
+              あなたの寝室は一瞬にして非日常の空間へと切り替わります。
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Scent 1 -->
+          <div class="group relative overflow-hidden h-[400px] cursor-pointer shadow-lg bg-black"
+               x-data="{ shown: false }" x-intersect.threshold.0.2="shown = true">
+            <div class="h-full w-full transition-all duration-1000 delay-0 transform"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+              <img 
+                src="https://images.unsplash.com/photo-1522771759366-9c606bc98500?auto=format&fit=crop&q=80&w=800" 
+                alt="White Musk" 
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-50"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 p-8 flex flex-col justify-end text-white transition-all duration-500">
+                 <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <span class="text-[10px] tracking-widest uppercase opacity-70 mb-2 block">Top: Lemon / Mid: Jasmine / Base: Musk</span>
+                  <h3 class="text-2xl font-serif mb-3 tracking-wide border-b border-white/20 pb-3 inline-block">White Musk</h3>
+                  <p class="text-sm font-light leading-relaxed text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    洗いたてのリネンのような純白の香り。
+                  </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- Scent 2 -->
+          <div class="group relative overflow-hidden h-[400px] cursor-pointer shadow-lg bg-black"
+               x-data="{ shown: false }" x-intersect.threshold.0.2="shown = true">
+            <div class="h-full w-full transition-all duration-1000 delay-200 transform"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+              <img 
+                src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=800" 
+                alt="Amber Wood" 
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-50"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 p-8 flex flex-col justify-end text-white transition-all duration-500">
+                 <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <span class="text-[10px] tracking-widest uppercase opacity-70 mb-2 block">Top: Bergamot / Mid: Vanilla / Base: Amber</span>
+                  <h3 class="text-2xl font-serif mb-3 tracking-wide border-b border-white/20 pb-3 inline-block">Amber Wood</h3>
+                  <p class="text-sm font-light leading-relaxed text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    夕暮れのラウンジのような、深みのある甘さ。
+                  </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- Scent 3 -->
+          <div class="group relative overflow-hidden h-[400px] cursor-pointer shadow-lg bg-black"
+               x-data="{ shown: false }" x-intersect.threshold.0.2="shown = true">
+            <div class="h-full w-full transition-all duration-1000 delay-400 transform"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+              <img 
+                src="https://images.unsplash.com/photo-1445100078834-3965d0822695?auto=format&fit=crop&q=80&w=800" 
+                alt="Morning Forest" 
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-50"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 p-8 flex flex-col justify-end text-white transition-all duration-500">
+                 <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <span class="text-[10px] tracking-widest uppercase opacity-70 mb-2 block">Top: Eucalyptus / Mid: Green Tea / Base: Cedar</span>
+                  <h3 class="text-2xl font-serif mb-3 tracking-wide border-b border-white/20 pb-3 inline-block">Morning Forest</h3>
+                  <p class="text-sm font-light leading-relaxed text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    雨上がりの森。静寂と浄化をもたらす緑。
+                  </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution C: Towel -->
+    <section id="solution-c" class="py-24 md:py-32 bg-white overflow-hidden">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24">
+          
+          <div class="w-full lg:w-1/2" 
+               x-data="{ shown: false }" 
+               x-intersect.threshold.0.3="shown = true">
+             <div class="relative transition-all duration-1000 transform"
+                  :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+               <img 
+                 src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200" 
+                 alt="Imabari Towel Texture" 
+                 class="w-full h-[500px] object-cover rounded-sm shadow-xl"
+                 loading="lazy"
+               />
+               <div class="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm px-6 py-4 shadow-sm">
+                 <p class="text-xs tracking-widest text-text font-serif">IMABARI CERTIFIED</p>
+               </div>
+             </div>
+          </div>
+
+          <div class="w-full lg:w-1/2" 
+               x-data="{ shown: false }" 
+               x-intersect.threshold.0.3="shown = true">
+            <div class="transition-all duration-1000 delay-200 transform"
+                 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+              <span class="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-4">Solution C: Touch</span>
+              <h2 class="text-4xl md:text-5xl font-serif text-text mb-8">肌が触れる、<br/>最初の贅沢。</h2>
+              
+              <div class="space-y-6 font-sans font-light text-text/80 leading-relaxed">
+                <p>
+                  1日の始まりに顔を洗う。その瞬間、肌に触れるタオルが極上であれば、
+                  その日はきっと素晴らしい1日になります。
+                </p>
+                <p>
+                  L'AUBEのタオルは、厳しい基準をクリアした<span class="font-medium text-text">「今治タオル」</span>認定品。
+                  高級ホテル仕様の双股紗（そうごさ）を採用し、
+                  圧倒的な吸水性と、何度洗ってもへたらない弾力を実現しました。
+                </p>
+                <p class="text-lg font-serif italic text-accent pt-4">
+                  「洗顔という作業を、至福の儀式へ。」
+                </p>
+
+                <ul class="mt-6 space-y-3 text-sm">
+                  <li class="flex items-center">
+                    <span class="w-12 text-accent font-serif">Look</span>
+                    <span class="text-text/60">光沢のある純白の輝き</span>
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-12 text-accent font-serif">Touch</span>
+                    <span class="text-text/60">雲のような弾力と柔らかさ</span>
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-12 text-accent font-serif">Feel</span>
+                    <span class="text-text/60">瞬時に水を吸い取る爽快感</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offer -->
+    <section id="offer" class="py-32 md:py-40 bg-[#FAFAF8] flex justify-center items-center">
+      <div class="container mx-auto px-6 md:px-12">
+        <div x-data="{ shown: false }" x-intersect.threshold.0.3="shown = true">
+          <div class="max-w-3xl mx-auto bg-white p-12 md:p-20 shadow-2xl shadow-accent/5 border border-accent/20 relative transition-all duration-1000 transform"
+               :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'">
+            <!-- Elegant Border Decoration -->
+            <div class="absolute inset-2 border border-accent/10 pointer-events-none"></div>
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#FAFAF8] px-4">
+               <span class="text-accent text-2xl">✦</span>
+            </div>
+
+            <div class="text-center relative z-10">
+              <span class="font-serif italic text-accent text-lg mb-6 block">Invitation</span>
+              <h2 class="text-3xl md:text-5xl font-serif text-text mb-10 tracking-wide">
+                Home Suite Home<br/>Package
+              </h2>
+              
+              <div class="space-y-4 mb-12 text-text/70 font-light font-sans text-sm md:text-base border-t border-b border-gray-100 py-8">
+                <div class="flex justify-between items-center max-w-sm mx-auto">
+                    <span>螺旋ハンガー (Spiral Hanger)</span>
+                    <span class="text-text/40">× 1</span>
+                </div>
+                <div class="flex justify-between items-center max-w-sm mx-auto">
+                    <span>ホテル仕様今治タオルセット</span>
+                    <span className="text-text/40">× 2</span>
+                </div>
+                <div class="flex justify-between items-center max-w-sm mx-auto">
+                    <span>選べるフレグランス (100ml)</span>
+                    <span className="text-text/40">× 1</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center gap-2 mb-12">
+                <p class="text-xs text-text/40 tracking-widest uppercase">Special Launch Price</p>
+                <div class="flex items-baseline gap-4">
+                    <span class="text-text/30 line-through font-serif text-xl">¥24,800</span>
+                    <span class="text-accent text-5xl font-serif">¥19,800</span>
+                </div>
+                <span class="text-text/50 text-xs mt-2">(税込・送料無料)</span>
+              </div>
+
+              <button class="inline-flex items-center justify-center px-8 py-5 text-sm tracking-widest uppercase transition-all duration-300 font-medium font-sans min-w-[280px] md:min-w-[360px] bg-accent text-white hover:bg-accent-dark shadow-2xl hover:-translate-y-1">
+                L'AUBE のある生活を始める
+              </button>
+              
+              <p class="mt-8 text-[10px] text-text/30 tracking-widest">
+                ※ 30日間全額返金保証。リスクなくお試しいただけます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-white py-16">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+          <div class="text-center md:text-left">
+             <h3 class="font-serif text-xl tracking-widest mb-4">L'AUBE</h3>
+             <p class="text-white/40 text-xs font-light tracking-wide">
+               Everyday luxury for your private sanctuary.
+             </p>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-6 text-xs tracking-widest text-white/60">
+            <a href="#" class="hover:text-accent transition-colors">特定商取引法に基づく表記</a>
+            <a href="#" class="hover:text-accent transition-colors">プライバシーポリシー</a>
+            <a href="#" class="hover:text-accent transition-colors">運営会社</a>
+            <a href="#" class="hover:text-accent transition-colors">お問い合わせ</a>
+          </div>
+        </div>
+
+        <div class="mt-16 pt-8 border-t border-white/10 text-center text-[10px] text-white/30 tracking-widest">
+          &copy; 2024 L'AUBE. ALL RIGHTS RESERVED.
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
