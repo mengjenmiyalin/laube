@@ -108,47 +108,51 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
-      <div class="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1520179432903-03d08e6ef07a?auto=format&fit=crop&q=80&w=2000" 
-          alt="Sunlight on white hotel sheets" 
-          class="w-full h-full object-cover"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-white/20 backdrop-blur-[1px]"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
-      </div>
+    <!-- Hero Section (優化對比度版) -->
+<section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://images.unsplash.com/photo-1520179432903-03d08e6ef07a?auto=format&fit=crop&q=80&w=2000" 
+      alt="Sunlight on white hotel sheets" 
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <!-- 優化點 1: 加強白色遮罩濃度到 40% (bg-white/40)，讓背景不要那麼干擾文字 -->
+    <div class="absolute inset-0 bg-white/40 backdrop-blur-[1px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
+  </div>
 
-      <div class="relative z-10 container mx-auto px-6 text-center"
-           x-data="{ show: false }"
-           x-init="setTimeout(() => show = true, 200)">
-        
-        <p class="text-secondary font-sans font-medium tracking-[0.3em] mb-6 uppercase text-xs md:text-sm transform transition-all duration-1000"
-           :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-          L'AUBE Collection
-        </p>
-        
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif text-text leading-tight mb-10 transform transition-all duration-1000 delay-300"
-            :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-          毎朝、ホテルで<br class="md:hidden" />目覚めるような<br />体験を。
-        </h1>
+  <div class="relative z-10 container mx-auto px-6 text-center"
+       x-data="{ show: false }"
+       x-init="setTimeout(() => show = true, 200)">
+    
+    <!-- 優化點 2: 文字改用深暖灰 (text-stone-800) 並加粗 (font-bold) -->
+    <p class="text-stone-800 font-sans font-bold tracking-[0.3em] mb-6 uppercase text-xs md:text-sm transform transition-all duration-1000"
+       :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+      L'AUBE Collection
+    </p>
+    
+    <!-- 優化點 3: 主標題加深到全黑 (text-gray-900) -->
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-tight mb-10 transform transition-all duration-1000 delay-300"
+        :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+      毎朝、ホテルで<br class="md:hidden" />目覚めるような<br />体験を。
+    </h1>
 
-        <div class="transform transition-all duration-1000 delay-700"
-             :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-          <a href="#brand-story" class="inline-block border-b border-text/60 pb-1 text-text/80 text-xs tracking-[0.2em] hover:text-accent hover:border-accent transition-colors duration-500 cursor-pointer">
-            DISCOVER THE SUITE
-          </a>
-        </div>
-      </div>
+    <div class="transform transition-all duration-1000 delay-700"
+         :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+      <!-- 優化點 4: 按鈕文字加深 -->
+      <a href="#brand-story" class="inline-block border-b border-gray-800 pb-1 text-gray-800 text-xs tracking-[0.2em] hover:text-accent hover:border-accent transition-colors duration-500 cursor-pointer">
+        DISCOVER THE SUITE
+      </a>
+    </div>
+  </div>
 
-      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-text/30">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
-        </svg>
-      </div>
-    </section>
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-gray-400">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+    </svg>
+  </div>
+</section>
 
     <!-- Brand Story (Concept) -->
     <section id="brand-story" class="relative py-32 md:py-48 overflow-hidden bg-background">
@@ -502,7 +506,7 @@
             <div class="text-center relative z-10">
               <span class="font-serif italic text-accent text-lg mb-6 block">Invitation</span>
               <h2 class="text-3xl md:text-5xl font-serif text-text mb-10 tracking-wide">
-                L'AUBE Package
+                L'AUBE SUITE
               </h2>
               
               <div class="space-y-4 mb-12 text-text/70 font-light font-sans text-sm md:text-base border-t border-b border-gray-100 py-8">
@@ -526,16 +530,13 @@
                     <span class="text-text/30 line-through font-serif text-xl">¥24,800</span>
                     <span class="text-accent text-5xl font-serif">¥19,800</span>
                 </div>
-                <span class="text-text/50 text-xs mt-2">(税込・送料無料)</span>
+                <span class="text-text/50 text-xs mt-2">(税込)</span>
               </div>
 
               <button class="inline-flex items-center justify-center px-8 py-5 text-sm tracking-widest uppercase transition-all duration-300 font-medium font-sans min-w-[280px] md:min-w-[360px] bg-accent text-white hover:bg-accent-dark shadow-2xl hover:-translate-y-1">
                 L'AUBE のある生活を始める
               </button>
-              
-              <p class="mt-8 text-[10px] text-text/30 tracking-widest">
-                ※ 30日間全額返金保証。リスクなくお試しいただけます。
-              </p>
+            
             </div>
           </div>
         </div>
